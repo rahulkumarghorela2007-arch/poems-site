@@ -18,6 +18,30 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Get all navbars on the page
+  const navbars = document.querySelectorAll(".navbar");
+
+  navbars.forEach(navbar => {
+    const navToggle = navbar.querySelector(".nav-toggle");
+    const navLinks = navbar.querySelector(".nav-links");
+
+    if (navToggle && navLinks) {
+      // Toggle open/close
+      navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+      });
+
+      // Close menu when a link is clicked (mobile UX)
+      navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+        });
+      });
+    }
+  });
+});
+
 /* =================== MODAL + POEMS LOGIC =================== */
 
 const modal = document.getElementById("poemModal");
