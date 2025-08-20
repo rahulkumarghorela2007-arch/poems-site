@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>कविताएँ - Rahul Kumar Poetry</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+  </head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Rahul Kumar Ghorela Poetry</a>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="index.html">होम</a></li>
+        <li><a href="poems.html" class="active">कविताएँ</a></li>
+      </ul>
+       <button id="themeToggle">🌙</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+    <section class="all-poems">
+      <h2>📖 सभी कविताएँ</h2>
+      <div class="poem-grid" id="poemList"></div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="poemModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="modal-nav">
+  <button id="prevPoem">⟵ पिछली</button>
+  <button id="nextPoem">अगली ⟶</button>
+</div>
+
+        <h2 id="modalTitle"></h2>
+        <div id="modalContent"></div>
+        <span class="author" id="modalAuthor"></span>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Rahul Kumar Poetry | Designed by Murlidhar Verma</p>
+  </footer>
+
+  <script src="js/poems.js"></script>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+
+

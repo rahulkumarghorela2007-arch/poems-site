@@ -1,0 +1,318 @@
+/* ---------- Base Layout (sticky footer) ---------- */
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Noto Serif Devanagari", serif;
+  background: radial-gradient(circle at 10% 20%, #1e1e2f, #0b0b14, #141429);
+  background-size: 200% 200%;
+  animation: aurora 15s ease infinite;
+  color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1; }
+
+/* ---------- Navbar ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(18, 18, 32, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.nav-brand {
+  font-weight: 800;
+  text-decoration: none;
+  background: linear-gradient(90deg, #ffcc00, #ffd966, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 20px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a {
+  color: #eaeaea;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 10px;
+  position: relative;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #ffcc00;
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Mobile nav */
+@media (max-width: 768px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-links {
+    position: absolute;
+    right: 16px; top: 58px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    background: rgba(12,12,20,0.9);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.45);
+    display: none;
+  }
+  .nav-links.open { display: flex; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 90px 20px 70px;
+  color: #ffdc6a;
+  text-shadow: 0 0 18px rgba(255, 204, 0, 0.35);
+}
+.hero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(34px, 5vw, 54px);
+}
+.hero p {
+  margin: 0;
+  color: #f7f0c8;
+  opacity: .9;
+}
+
+/* ---------- Sections / Cards ---------- */
+.special-poems, .all-poems {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 22px 20px;
+}
+.special-poems h2, .all-poems h2 {
+  margin: 0 0 18px;
+  font-size: clamp(22px, 3.5vw, 28px);
+  color: #ffdc6a;
+}
+.poem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+.poem-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 18px;
+  text-decoration: none;
+  color: #f2f2f2;
+  transition: all .3s ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+}
+.poem-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(255,204,0,0.7);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.55);
+}
+/* hover shine */
+.poem-card::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.25), transparent);
+  transform: skewX(-20deg);
+}
+.poem-card:hover::after {
+  animation: shine 0.8s forwards;
+}
+@keyframes shine {
+  100% { left: 125%; }
+}
+.poem-card h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  color: #fff;
+}
+.poem-card p {
+  margin: 0;
+  opacity: .85;
+  font-size: 14px;
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+.modal-content {
+  position: relative;
+  background: #fdfcf7;
+  color: #222;
+  font-family: "Noto Serif Devanagari", serif;
+  line-height: 1.9;
+  border-radius: 20px;
+  padding: 36px 28px 28px;
+  max-width: 760px;
+  width: min(92%, 760px);
+  max-height: 80vh;       
+  overflow-y: auto;
+  scrollbar-width: thin;
+  box-shadow: 0 18px 46px rgba(0,0,0,0.25),
+              0 8px 20px rgba(0,0,0,0.35);
+  animation: fadeInScale .45s ease;
+}
+.close-btn {
+  position: absolute;
+  right: 16px; top: 12px;
+  cursor: pointer;
+  font-size: 28px;
+  color: #ff6666;
+  line-height: 1;
+  user-select: none;
+}
+.modal-content h2 {
+  margin: 0 0 16px;
+  text-align: center;
+  color: #b58900;
+  font-size: 26px;
+}
+#modalContent p {
+  margin: 12px 0;
+  font-size: 18px;
+  color: #333;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeLine 0.6s forwards;
+  animation-delay: var(--delay, 0s);
+}
+.author {
+  display: block;
+  margin-top: 18px;
+  font-style: italic;
+  color: #555;
+  text-align: right;
+}
+.modal-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+.modal-nav button {
+  background: #b58900;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.modal-nav button:hover {
+  background: #a17700;
+}
+#themeToggle {
+  margin-left: 12px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  font-size: 18px;
+  padding: 6px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+#themeToggle:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Light mode */
+body.light {
+  background: #fdfcf7;
+  color: #222;
+}
+body.light .navbar {
+  background: rgba(255,255,255,0.8);
+  border-bottom: 1px solid #ddd;
+}
+body.light .nav-links a { color: #222; }
+body.light footer {
+  background: rgba(255,255,255,0.8);
+  color: #333;
+}
+body.light .modal-content {
+  background: #fff;
+  color: #111;
+}
+
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  padding: 18px 10px;
+  background: rgba(18,18,32,0.6);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #d8d8d8;
+  font-size: 14px;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeLine {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
