@@ -136,8 +136,7 @@ const poems = [
   {
     title: "नई कविताएँ जल्द आ रही हैं...",
     author: "✒️ राहुल कुमार घोड़ेला",
-    content: `यहाँ पर जल्द ही नई कविताएँ जोड़ी जाएँगी।  
-    Coming Soon...`
+    content: 'new poems are coming soon....'
   }
   
 ];
